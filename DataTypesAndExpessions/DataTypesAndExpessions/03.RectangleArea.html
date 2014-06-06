@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Rectangle area</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 3 : find the area of a rectangle</h1>
+    <label for="tb-first">Width: </label>
+    <input type="text" id="tb-first" />
+    <span> cm</span>
+    <br />
+    <label for="tb-first">Height: </label>
+    <input type="text" id="tb-second" />
+    <span> cm</span>
+    <br />
+    <a href="#" onclick="submitBtnClick()">Calculate</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var width = jsConsole.readFloat("#tb-first");
+            var height = jsConsole.readFloat("#tb-second");
+            var rectangleArea = width * height;
+
+            jsConsole.writeLine("The rectangle’s area is " + rectangleArea + " square cm.");
+
+        }
+    </script>
+</body>
+</html>

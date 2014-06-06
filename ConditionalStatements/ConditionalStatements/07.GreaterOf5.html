@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Greater number</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 7: The greatest number</h1>
+
+    <label for="tb-first">Number 1: </label>
+    <input type="text" id="tb-first" />
+    <br />
+
+    <label for="tb-first">Number 2: </label>
+    <input type="text" id="tb-second" />
+    <br />
+
+    <label for="tb-first">Number 3: </label>
+    <input type="text" id="tb-third" />
+    <br />
+
+    <label for="tb-first">Number 4: </label>
+    <input type="text" id="tb-fourth" />
+    <br />
+
+    <label for="tb-first">Number 5: </label>
+    <input type="text" id="tb-fift" />
+    <br />
+
+    <a href="#" onclick="submitBtnClick()">Find</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var a = jsConsole.readInteger("#tb-first");
+            var b = jsConsole.readInteger("#tb-second");
+            var c = jsConsole.readInteger("#tb-third");
+            var d = jsConsole.readInteger("#tb-fourth");
+            var e = jsConsole.readInteger("#tb-fift");
+
+            if ((a > b) && (a > c) && (a > d) && (a > e)) {
+                jsConsole.writeLine("The biggest value is " + a);
+            }
+            else if ((b > c) && (b > d) && (b > e)) {
+                jsConsole.writeLine("The biggest value is " + b);
+            }
+            else if ((c > d) && (c > e)) {
+                jsConsole.writeLine("The biggest value is " + c);
+            }
+            else if (d > e) {
+                jsConsole.writeLine("The biggest value is " + d);
+            }
+            else {
+                jsConsole.writeLine("The biggest value is " + e);
+            }
+        }
+    </script>
+</body>
+</html>

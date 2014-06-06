@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Min and Max</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 3: Print max and min</h1>
+    <label for="tb-add">Add number: </label>
+    <input type="text" id="tb-add" />
+    <span>Single number</span>
+    <br />
+    <a href="#" onclick="AddNumber()">Add</a>
+    <br />
+
+    <label for="tb-sequence">Add sequence: </label>
+    <input type="text" id="tb-sequence" />
+    <span>Separate with space</span>
+    <br />
+    <a href="#" onclick="AddSequence()">Add</a>
+    <br />
+
+    <hr />
+    <a href="#" onclick="FindMinMax()">Find</a>
+
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        //Just for training
+        var numbersArray = [];
+
+        function AddNumber() {
+            var number = jsConsole.readFloat("#tb-add");
+
+            if (!isNaN(number)) {
+                numbersArray.push(number);
+            }
+            jsConsole.clear();
+            jsConsole.writeLine("Your numbers are: " + numbersArray);
+        }
+
+        function AddSequence() {
+            var sequenceStr = jsConsole.read("#tb-sequence");
+            var sequenceArray = sequenceStr.split(" ");
+
+            for (var i = 0; i < sequenceArray.length; i++) {
+                var number = parseFloat(sequenceArray[i]);
+
+                if (isNaN(number)) {
+                    continue;
+                }
+                numbersArray.push(number);
+            }
+            jsConsole.clear();
+            jsConsole.writeLine("Your numbers are: " + numbersArray);
+        }
+
+        //Real exercise! 
+        function FindMinMax() {
+            jsConsole.clear();
+
+            var min = Number.MAX_VALUE;
+            var max = Number.MIN_VALUE;
+
+            for (var i = 0; i < numbersArray.length; i++) {
+                var temp = numbersArray[i];
+
+                if (temp < min) {
+                    min = temp;
+                }
+                if (temp > max) {
+                    max = temp;
+                }
+            }
+
+            jsConsole.writeLine("Your numbers are: " + numbersArray);
+            numbersArray = [];
+            jsConsole.writeLine("The max number is: " + max);
+            jsConsole.writeLine("The min number is: " + min);
+            jsConsole.writeLine("The numbers list is reset!<br/>")
+            
+        }
+       
+    </script>
+</body>
+</html>

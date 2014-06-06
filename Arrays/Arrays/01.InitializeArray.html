@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Initialize Array</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <h1>Exercise 1: Alocate space and initialize array</h1>
+
+    <a href="#" onclick="initialize()">Initialize:</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function initialize() {
+            var array1 = new Array(20);
+
+            for (var i = 0; i < array1.length; i++) {
+                array1[i] = i * 5;
+            }
+            
+            jsConsole.writeLine("Initialized array: <br/>" + array1);
+        }
+    </script>
+</body>
+</html>

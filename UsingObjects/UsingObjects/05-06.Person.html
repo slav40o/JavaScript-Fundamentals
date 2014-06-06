@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Person</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <h1>Exercise 5-6</h1>
+
+    <label for="tb-add">First name: </label>
+    <input type="text" id="tb-fname" />
+    <br />
+    <label for="tb-add">Last name: </label>
+    <input type="text" id="tb-lname" />
+    <br />
+    <label for="tb-add">Age: </label>
+    <input type="text" id="tb-age" />
+    <br />
+
+    <a href="#" onclick="addPerson()">Add person</a>
+    <a href="#" onclick="findYoungest()">Find youngest</a>
+    <a href="#" onclick="clearPeopleList()">Clear list</a>
+    <br />
+
+    <a href="#" onclick="groupPeople('age')">Group by age</a>
+    <a href="#" onclick="groupPeople('firstName')">Group by First name</a>
+    <a href="#" onclick="groupPeople('lastName')">Group by Last name</a>
+    <a href="#" onclick="autoAddPeople()">Add list</a>
+
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        var people = [];
+
+        function createPerson(fname, lname, age) {
+            return {
+                firstName: fname,
+                lastName: lname,
+                age: age,
+                toString: function personToString() {
+                    return this.firstName + " " + this.lastName;
+                }
+            }
+        }
+
+        function addPerson() {
+            var fname = jsConsole.read("#tb-fname");
+            var lname = jsConsole.read("#tb-lname");
+            var age = jsConsole.readInteger("#tb-age");
+
+            var person = createPerson(fname, lname, age);
+            people.push(person);
+
+            jsConsole.writeLine(person.toString() + " added.");
+        }
+
+        function findYoungest() {
+            var youngest = createPerson("Oldest", "Guy", 30000);
+
+            for (var i = 0; i < people.length; i++) {
+
+                if(people[i].age < youngest.age){
+                    youngest = people[i];
+                }
+            }
+
+            jsConsole.writeLine(youngest + " is the youngest person (" + youngest.age + " years old).");
+        }
+
+        function groupPeople(prop) {
+            var grouped = {};
+
+            switch (prop) {
+                case 'age': {
+                    for (var i = 0; i < people.length; i++) {
+
+                        if (grouped[people[i].age]) {
+                            grouped[people[i].age].push(people[i]);
+                        }
+                        else {
+                            grouped[people[i].age] = [people[i]];
+                        }
+                    }
+                    break;
+                }
+                case 'firstName': {
+                    for (var i = 0; i < people.length; i++) {
+
+                        if (grouped[people[i].firstName]) {
+                            grouped[people[i].firstName].push(people[i]);
+                        }
+                        else {
+                            grouped[people[i].firstName] = [people[i]];
+                        }
+                    }
+                    break;
+                }
+                case 'lastName': {
+                    for (var i = 0; i < people.length; i++) {
+
+                        if (grouped[people[i].lastName]) {
+                            grouped[people[i].lastName].push(people[i]);
+                        }
+                        else {
+                            grouped[people[i].lastName] = [people[i]];
+                        }
+                    }
+                    break;
+                }
+                default: jsConsole.writeLine("Invalid property!");
+            }
+
+            jsConsole.writeLine("Grouped by " + prop + "!<br />");
+
+            for (var groupName in grouped) {
+                jsConsole.writeLine(groupName + ": ");
+                jsConsole.writeLine(grouped[groupName]);
+                jsConsole.writeLine("");
+            }
+        }
+
+        //for test
+        function autoAddPeople() {
+            people.push(createPerson("Pesho", "Ivanov", 22));
+            people.push(createPerson("Tosho", "Petkov", 18));
+            people.push(createPerson("Galq", "Vitkova", 8));
+            people.push(createPerson("Tosho", "Ivanov", 18));
+            people.push(createPerson("Pesho", "Cvetanov", 22));
+            people.push(createPerson("Galabina", "Vitkova", 21));
+            people.push(createPerson("Gele", "Ivanov", 21));
+            people.push(createPerson("Tosho", "Cvetanov", 22));
+            people.push(createPerson("Gele", "Cvetanov", 21));
+            people.push(createPerson("Tosho", "Cvetanov", 21));
+            jsConsole.writeLine("Added 10 people.");
+        }
+
+        function clearPeopleList() {
+            people = [];
+            jsConsole.clear();
+            jsConsole.writeLine("List cleared");
+        }
+    </script>
+</body>
+</html>

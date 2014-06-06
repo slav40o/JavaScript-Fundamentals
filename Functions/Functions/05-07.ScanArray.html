@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Scan Array</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <h1>Exercise 5-7: search in array</h1>
+    <p><strong>Array: </strong>55 - 42 - 55 - 35 - 11 - 22 - 99 - 56 - 88 - 66 - 99 - 99 - 101 - 100 - 120</p>
+    <p><strong>Index: </strong>00 - 01 - 02 - 03 - 04 - 05 - 06 - 07 - 08 - 09 - 10 - 11 - 012 - 013 - 014</p>
+    <label for="tb-add">Number: </label>
+    <input type="text" id="tb-num" />
+    <a href="#" onclick="searchNum()">Search</a>
+    <br />
+
+    <label for="tb-add">Index: </label>
+    <input type="text" id="tb-index" />
+    <a href="#" onclick="findByIndex()">Is Bigger</a>
+    <br />
+
+    <a href="#" onclick="firstBigger()">First bigger</a>
+
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        var arr = [55, 42, 55, 35, 11, 22, 99, 56, 88, 66, 99, 99, 101, 100, 120];
+        jsConsole.writeLine(arr);
+
+        //Exercise 5
+        function searchNum() {
+            var num = jsConsole.readInteger("#tb-num");
+            var count = 0;
+
+            if (isNaN(num)) {
+                jsConsole.writeLine("Not a valid number!");
+                return;
+            }
+
+            for (var i = 0; i < arr.length; i++) {
+                if(num === arr[i]){
+                    count++;
+                }
+            }
+
+            if (count === 1) {
+                jsConsole.writeLine("The number " + num + " is found one time.");
+            }
+            else {
+                jsConsole.writeLine("The number " + num + " is found " + count + " times.");
+            } 
+        }
+
+        //Exercise 6
+        //Parse value and display result
+        function findByIndex() {
+            var index = jsConsole.readInteger("#tb-index");
+            var isBigger = biggerThanNeighbours(index);
+
+            if (isBigger) {
+                jsConsole.writeLine("The number " + arr[index] + " at position "
+                    + index + " is bigger than it's neighbours.")
+            }
+            else {
+                if (index < 0 || index >= arr.length) {
+                    jsConsole.writeLine("Index out of range!");
+                }
+                else if (index === 0 || index === arr.length -1) {
+                    jsConsole.writeLine("The number " + arr[index] + " does not have two neighbours.")
+                }
+                else {
+                    jsConsole.writeLine("The number " + arr[index] + " is not bigger.");
+                }
+            }
+        }
+
+        //Actual function. Returns true or false 
+        function biggerThanNeighbours(index) {
+            if (index <= 0 || index >= arr.length - 1) {
+                return false;
+            }
+            else if (arr[index -1] < arr[index] && arr[index] > arr[index +1]) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        //Exercise 7
+        function firstBigger() {
+            var index = -1;
+
+            for (var i = 1; i < arr.length - 1; i++) {
+                var isBigger = biggerThanNeighbours(i);
+
+                if (isBigger) {
+
+                    //Instead of return index 
+                    jsConsole.writeLine("First bigger number is " + arr[i] + " at position " + i);
+                    break;
+                }
+            }
+
+            //Instead of return -1
+            if (index !== -1) {
+                jsConsole.writeLine("There is not such number.");
+            }
+        }
+    </script>
+</body>
+</html>

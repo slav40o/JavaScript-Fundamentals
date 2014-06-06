@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Points</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <h1>Exercise 1</h1>
+
+    <p>Add points</p>
+    <div id="calc-distance">
+        <span>Point 1:</span><br />
+        <label for="tb-add">X: </label>
+        <input type="text" id="tb-x1" />
+
+        <label for="tb-add">Y: </label>
+        <input type="text" id="tb-y1" />
+        <br />
+
+        <span>Point 2:</span><br />
+        <label for="tb-add">X: </label>
+        <input type="text" id="tb-x2" />
+
+        <label for="tb-add">Y: </label>
+        <input type="text" id="tb-y2" />
+        <br />
+        <a href="#" onclick="getInput(false)">Calculate distance</a>
+        <a href="#" onclick="getInput(true)">Add as line</a>
+    </div>
+    <div id="form-triangle">
+        <a href="#" onclick="checkForTriangle()">Check</a>
+        <span> (Add 3 lines to check for a triangle)</span>
+        <a href="#" onclick="clearLines()">Clear lines</a>
+    </div>
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        var lines = [];
+
+        function getInput(addLine) {
+            var x1 = jsConsole.readFloat("#tb-x1");
+            var x2 = jsConsole.readFloat("#tb-x2");
+            var y1 = jsConsole.readFloat("#tb-y1");
+            var y2 = jsConsole.readFloat("#tb-y2");
+
+            var firstPoint = createPoint(x1, y1);
+            var secondPoint = createPoint(x2, y2);
+
+            if (addLine) {
+                var line = createLine(firstPoint, secondPoint);
+                lines.push(line);
+                jsConsole.writeLine(lines[lines.length - 1].toString() + " created.");
+            }
+            else {
+                var distance = calcDistance(firstPoint, secondPoint);
+                jsConsole.writeLine("The distance between" + firstPoint.toString() +
+                    " and " + secondPoint.toString() +" is " + distance);
+            }
+        }
+
+        function createPoint(xCoord, yCoord) {
+            return {
+                x: xCoord,
+                y: yCoord,
+                toString: function pointToString() {
+                    return "Point(" + this.x + ", " + this.y + ")";
+                }
+            }
+        }
+
+        function createLine(point1, point2) {
+            return {
+                p1: point1,
+                p2: point2,
+                length: calcDistance(point1, point2),
+                toString: function lineToString() {
+                    return "Line(" + this.p1.toString() + ", " + this.p2.toString() + ")";
+                }
+            }
+        }
+
+        function calcDistance(point1, point2) {
+            var x = point2.x - point1.x;
+            var y = point2.y - point1.y;
+
+            return Math.sqrt(x * x + y * y);
+        }
+
+        //can take 3 parameters for each line
+        //now takes last 3 memebers form lines
+        function checkForTriangle() {
+            var numOfLines = lines.length;
+
+            if (numOfLines < 3) {
+                jsConsole.writeLine("Enter more lines!(" + (3 - numOfLines) + "left)");
+            }
+            else {
+                var a = lines[numOfLines - 3].length;
+                var b = lines[numOfLines - 2].length;
+                var c = lines[numOfLines - 1].length;
+
+                if (a + b > c && a + c > b && b + c > a) {
+                    jsConsole.writeLine("You can form a triangle.");
+                }
+                else {
+                    jsConsole.writeLine("You CAN NOT form a triangle.");
+                }
+            }
+        }
+
+        function clearLines() {
+            lines = {};
+            index = 0;
+            jsConsole.clear();
+        }
+    </script>
+</body>
+</html>

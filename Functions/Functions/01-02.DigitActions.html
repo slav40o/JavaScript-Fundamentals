@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Digit Actions</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <h1>Exercise 1-2</h1>
+    <label for="tb-add">Number: </label>
+    <input type="text" id="tb-num" />
+    <br />
+
+    <a href="#" onclick="callReverseNumber()">Reverse</a>
+    <a href="#" onclick="callLastDigit()">Last digit</a>
+
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        //For trainig
+        function callReverseNumber() {
+            var numberStr = jsConsole.read("#tb-num");
+            var reversedNum = reverseNumber(numberStr);
+
+            jsConsole.writeLine(numberStr + " --> " + reversedNum);
+        }
+
+        //Can accept integer or string and returns integer.
+        //If the number is not valid returns 0 (can be changed to anything)
+        function reverseNumber(num) {
+            var numberStr = num.toString();
+
+            if (isNaN(num)) {
+                return 0;
+            }
+            else if (numberStr.length  < 2) {
+                return num;
+            }
+
+            var reversed = numberStr.split('').reverse().join('');
+
+            return parseInt(reversed);
+        }
+
+        function callLastDigit() {
+            var number = jsConsole.readInteger("#tb-num");
+            var lastDigit = getLastDigit(number);
+            jsConsole.writeLine(number + " --> " + lastDigit);
+        }
+
+        function getLastDigit(num) {
+            var digit = num % 10;
+
+            switch (digit) {
+                case 0: return "zero"; break;
+                case 1: return "one"; break;
+                case 2: return "two"; break;
+                case 3: return "three"; break;
+                case 4: return "four"; break;
+                case 5: return "five"; break;
+                case 6: return "sox"; break;
+                case 7: return "seven"; break;
+                case 8: return "eight"; break;
+                case 9: return "nine"; break;
+                default: return "Not a digit!";
+            }
+        }
+    </script>
+</body>
+</html>

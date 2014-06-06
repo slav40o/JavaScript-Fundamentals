@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Find real roots</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 6: Enter the coef of the equation a*x2 + b*x + c = 0</h1>
+
+    <label for="tb-first">Coef a: </label>
+    <input type="text" id="tb-a" />
+    <br />
+
+    <label for="tb-first">Coef b: </label>
+    <input type="text" id="tb-b" />
+    <br />
+
+    <label for="tb-first">Coef c: </label>
+    <input type="text" id="tb-c" />
+    <br />
+
+    <a href="#" onclick="submitBtnClick()">Calculate</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var a = jsConsole.readInteger("#tb-a");
+            var b = jsConsole.readInteger("#tb-b");
+            var c = jsConsole.readInteger("#tb-c");
+
+            var discriminant = (b * b) - (4 * a * c);
+            if (discriminant > 0) {
+                var x1 = ((-b) + Math.sqrt(discriminant)) / 2 * a;
+                var x2 = ((-b) - Math.sqrt(discriminant)) / 2 * a;
+                jsConsole.writeLine("The equation has 2 real roots:");
+                jsConsole.writeLine("x1 = " + x1 + ", x2 = " + x2);
+            }
+            else if (discriminant < 0) {
+                jsConsole.writeLine("The equation has no real roots!");
+            }
+            else {
+                var x = (-b) / 2 * a;
+                jsConsole.writeLine("The equation has one real root:");
+                jsConsole.writeLine("x1 = x2 = " + x);
+            }
+        }
+    </script>
+</body>
+</html>

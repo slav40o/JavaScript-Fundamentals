@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Print Numbers</title>
+    <link href="styles/js-console.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 1 and 2: Print numbers</h1>
+    <label for="tb-first">To number: </label>
+    <input type="text" id="tb-first" />
+    <br />
+
+    <a href="#" onclick="PrintNumbers()">Print</a>
+    <a href="#" onclick="PrintDivisibleNumbers()">Print(Divisible)</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function PrintNumbers() {
+            var number = jsConsole.readInteger("#tb-first");
+
+            for (var i = 1; i <= number; i++) {
+                jsConsole.write(i + " ");
+            }
+
+            jsConsole.writeLine("");
+        }
+
+        function PrintDivisibleNumbers() {
+            var number = jsConsole.readInteger("#tb-first");
+            var missedNumbers = "";
+
+            for (var i = 1; i <= number; i++) {
+                if (i % 3 == 0 && i % 7 == 0) {
+                    missedNumbers += (" " + i.toString());
+                    continue;
+                }
+                jsConsole.write(i + " ");
+            }
+
+            if (missedNumbers.length == 0) {
+                missedNumbers = "none";
+            }
+
+            jsConsole.writeLine("<br/> Missed numbers: " + missedNumbers);
+            jsConsole.writeLine("");
+        }
+    </script>
+</body>
+</html>

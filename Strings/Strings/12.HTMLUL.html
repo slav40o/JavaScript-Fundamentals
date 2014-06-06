@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>HTML UI</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <h1>Exercise 12</h1>
+    <div data-type="template" id="list-item">
+        <strong>-{name}-</strong> <span>-{age}-</span>
+    </div>
+    <a href="#" onclick="generateTest()">12.Test</a>
+    <div id="list-container"></div>
+     <script>
+         function generateTest() {
+             var people = [
+                 { name: "Peter", age: 14 },
+                 { name: "Griffin", age: 35 },
+                 { name: "Meg", age: 15 },
+                 { name: "Brian", age: 7 },
+                 { name: "Stewie", age: 1 },
+                 { name: "Luis", age: 31 },
+                 { name: "Chriss", age: 18 },
+                 { name: "Pew", age: 14 }
+             ];
+             var template = '<strong>-{name}-</strong> <span>-{age}-</span>';
+             var peopleList = generateList(people,template);
+             document.getElementById('list-container').innerHTML = peopleList;
+         }
+
+         function generateList(people, template) {
+             var generatedList = "<ul>";
+             var lineTemplate = "<li>" + template + "</li>";
+
+             for (var i = 0; i < people.length; i+=1) {
+                 var genLine = lineTemplate.replace('-{name}-', people[i].name);
+                 genLine = genLine.replace('-{age}-', people[i].age);
+
+                 generatedList += genLine;
+             }
+
+             return generatedList;
+         }
+     </script>
+</body>
+</html>

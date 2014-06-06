@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Point in circle</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 6: Find if a point is in a circle K(0, 5)</h1>
+    <label for="tb-first">X: </label>
+    <input type="text" id="tb-x" />
+    <br />
+    <label for="tb-first">Y: </label>
+    <input type="text" id="tb-y" />
+    <br />
+    <a href="#" onclick="submitBtnClick()">Check</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var x = jsConsole.readFloat("#tb-x");
+            var y = jsConsole.readFloat("#tb-y");
+
+            var isInCircle = (x * x + y * y) <= 25;
+            jsConsole.writeLine("Point(" + y + ", " + x + ") is in the circle: " + isInCircle);
+        }
+    </script>
+</body>
+</html>

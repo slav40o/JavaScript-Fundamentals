@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Find bit 3</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 5: find third bit</h1>
+    <label for="tb-first">Number: </label>
+    <input type="text" id="tb-first" />
+    <br />
+    <a href="#" onclick="submitBtnClick()">Check</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var number = jsConsole.readInteger("#tb-first");
+            var isThirdBitOne = ((number >> 3) & 1) == 1;
+
+            jsConsole.writeLine("Third bit is 1: " + isThirdBitOne);
+            jsConsole.write("Last 8 bits of " + number + ": ");
+
+            for (var i = 7; i >= 0; i--) {
+                var bit = (number >> i) & 1;
+                jsConsole.write(bit + " ");
+            }
+
+            jsConsole.writeLine("<br />");
+        }
+    </script>
+</body>
+</html>

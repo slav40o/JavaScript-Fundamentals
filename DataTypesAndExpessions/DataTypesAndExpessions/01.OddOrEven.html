@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Odd or even</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 1: Odd or Even</h1>
+    <label for="tb-first">Number: </label>
+    <input type="text" id="tb-first" />
+    <br />
+    <a href="#" onclick="submitBtnClick()">Odd/Even</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var number = jsConsole.readInteger("#tb-first");
+
+            //use only expressions without if on purpose 
+            //to use material only from the presentation
+            ((number % 2) == 0) ?
+                jsConsole.writeLine("The number " + number + " is even.") :
+                jsConsole.writeLine("The number " + number + " is odd.");
+        }
+    </script>
+</body>
+</html>

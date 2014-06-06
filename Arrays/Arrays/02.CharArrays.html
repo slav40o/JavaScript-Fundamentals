@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Compare char arrays</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <label for="tb-add">Add Chars: </label>
+    <input type="text" id="tb-first" />
+    <span>Separated by space</span>
+    <br />
+
+    <label for="tb-add">Add Chars: </label>
+    <input type="text" id="tb-second" />
+    <span>Separated by space</span>
+    <br />
+
+    <a href="#" onclick="CompareArrays()">Compare</a>
+    <br />
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function CompareArrays() {
+            var firstInputStr = jsConsole.read("#tb-first");
+            var secondInputStr = jsConsole.read("#tb-second");
+
+            var firstArray = firstInputStr.split(" ");
+            var secondArray = secondInputStr.split(" ");
+
+            var smallerLength = Math.min(firstArray.length, secondArray.length);
+            var areEqual = true;
+
+            for (var i = 0; i < smallerLength; i++) {
+                if (firstArray[i].toLowerCase() < secondArray[i].toLowerCase()) {
+                    areEqual = false;
+                    jsConsole.writeLine(firstArray + " is first");
+                    break;
+                }
+                else if (firstArray[i].toLowerCase() > secondArray[i].toLowerCase()) {
+                    areEqual = false;
+                    jsConsole.writeLine(secondArray + " is first");
+                    break;
+                }
+            }
+
+            if (areEqual) {
+                if (smallerLength < firstArray.length) {
+                    jsConsole.writeLine(secondArray + " is first");
+                }
+                else if (smallerLength < secondArray.length) {
+                    jsConsole.writeLine(firstArray + " is first");
+                }
+                else {
+                    jsConsole.writeLine("They are equal!");
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>

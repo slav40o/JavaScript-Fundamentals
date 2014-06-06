@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Find biggest</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 3: Find biggest integer</h1>
+
+    <label for="tb-first">Number 1: </label>
+    <input type="text" id="tb-first" />
+    <br />
+
+    <label for="tb-first">Number 2: </label>
+    <input type="text" id="tb-second" />
+    <br />
+
+    <label for="tb-first">Number 3: </label>
+    <input type="text" id="tb-third" />
+    <br />
+
+    <a href="#" onclick="submitBtnClick()">Check</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var firstNumber = jsConsole.readFloat("#tb-first");
+            var secondNumber = jsConsole.readFloat("#tb-second");
+            var thirdNumber = jsConsole.readFloat("#tb-third");
+
+            if (firstNumber > secondNumber && firstNumber > thirdNumber) {
+                jsConsole.writeLine("The biggest number is: " + firstNumber);
+            }
+            else if (secondNumber > firstNumber && secondNumber > thirdNumber) {
+                jsConsole.writeLine("The biggest number is: " + secondNumber);
+            }
+            else {
+                jsConsole.writeLine("The biggest number is: " + thirdNumber);
+            }
+
+        }
+    </script>
+</body>
+</html>

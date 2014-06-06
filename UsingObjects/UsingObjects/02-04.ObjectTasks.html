@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Object Task</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <h1>Exercise 2-4</h1>
+    <p>Object - array = [1,2,1,4,1,3,4,1,111,3,2,1,"1"]</p>
+
+    <label for="tb-add">Element: </label>
+    <input type="text" id="tb-elem" />
+    <input type="checkbox" id="is-number" />
+    <label for="is-number">Is number</label>
+    <br />
+
+    <a href="#" onclick="removeElement()">Remove element</a>
+    <a href="#" onclick="cloneArr()">Deep clone(array)</a>
+    <br />
+
+    <p><a href="#" onclick="cloneVar()">Clone element</a> Examle</p>
+
+    <label for="tb-add">Property: </label>
+    <input type="text" id="tb-prop" />
+    <a href="#" onclick="checkArrayProperty()">Check(array)</a>
+
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        var arr = [1, 2, 1, 4, 1, 3, 4, 1, 111, 3, 2, 1, "1"];
+        jsConsole.writeLine(arr);
+
+        //Exercise 2
+        Array.prototype.remove = function (element) {
+            for (var i = this.length - 1; i >=0 ; i--) {
+                if (this[i] === element) {
+                    this.splice(i, 1);
+                }
+            }
+        }
+
+        function removeElement() {
+            var element = jsConsole.read("#tb-elem");
+
+            if (document.getElementById('is-number').checked) {
+                element = parseInt(element);
+            }
+
+            arr.remove(element);
+
+            jsConsole.writeLine(arr);
+        }
+
+        //Exercise 3
+        function cloneArr() {
+            var cloned = deepClone(arr);
+
+            jsConsole.writeLine("Copied array: ");
+            jsConsole.writeLine(cloned);
+        }
+
+        function cloneVar() {
+            //reference type
+            var num = new Number(5);
+            var clonedNum = deepClone(num);
+            jsConsole.writeLine("Cloned value is " + clonedNum + " with typeof: " + typeof (clonedNum));
+
+        }
+
+        function deepClone(obj) {
+            if (typeof(obj) != 'object') {
+                return obj;
+            }
+            else {
+                var clone = JSON.parse(JSON.stringify(obj));
+                return clone;
+            }
+
+           //var clone = {};
+           //
+           //for (var i in obj) {
+           //
+           //    if (typeof (obj[i]) == "object" && obj[i] != null){
+           //        clone[i] = deepClone(obj[i]);
+           //    } 
+           //    else {
+           //        clone[i] = obj[i];
+           //    }
+           //}
+        }
+
+        //Exercise 4
+        //Can take property name and object as arguments
+        //Can change arr with any object
+        function checkArrayProperty() {
+            var hasProp = false;
+            var prop = jsConsole.read("#tb-prop");
+
+            if (arr.hasOwnProperty(prop)) {
+                hasProp = true;
+            }
+            
+            jsConsole.writeLine("Array has the property " + prop + ": " + hasProp);
+        }
+    </script>
+</body>
+</html>

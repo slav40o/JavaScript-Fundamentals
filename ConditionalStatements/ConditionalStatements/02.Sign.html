@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Sign</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 2: Show sign of a product</h1>
+
+    <label for="tb-first">Number 1: </label>
+    <input type="text" id="tb-first" />
+    <br />
+
+    <label for="tb-first">Number 2: </label>
+    <input type="text" id="tb-second" />
+    <br />
+
+    <label for="tb-first">Number 3: </label>
+    <input type="text" id="tb-third" />
+    <br />
+
+    <a href="#" onclick="submitBtnClick()">Check</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var firstNumber = jsConsole.readFloat("#tb-first");
+            var secondNumber = jsConsole.readFloat("#tb-second");
+            var thirdNumber = jsConsole.readFloat("#tb-third");
+
+            var negativeCount = 0;
+            var isPositive = true;
+
+            if (firstNumber < 0) {
+                negativeCount++;
+            }
+
+            if (secondNumber < 0) {
+                negativeCount++;
+            }
+
+            if (thirdNumber < 0) {
+                negativeCount++;
+            }
+
+            if (negativeCount % 2 == 1) {
+                jsConsole.writeLine("The product is negative.");
+            }
+            else {
+                jsConsole.writeLine("The product is positive.");
+            }
+        }
+    </script>
+</body>s
+</html>

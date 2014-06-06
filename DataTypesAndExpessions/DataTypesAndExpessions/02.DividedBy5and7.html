@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Divide by 5 and 7</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 2: number divide by 5 and 7</h1>
+    <label for="tb-first">Number: </label>
+    <input type="text" id="tb-first" />
+    <br />
+    <a href="#" onclick="submitBtnClick()">Divide</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var number = jsConsole.readInteger("#tb-first");
+
+			var divisible = (number % 5 == 0) && (number % 7 == 0);
+
+			divisible ?
+				jsConsole.writeLine("The number " + number + " is divisible by 5 and 7.") :
+				jsConsole.writeLine("The number " + number + " is NOT divisible by 5 and 7.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Descending order</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 3:</h1>
+
+    <label for="tb-first">Number 1: </label>
+    <input type="text" id="tb-first" />
+    <br />
+
+    <label for="tb-first">Number 2: </label>
+    <input type="text" id="tb-second" />
+    <br />
+
+    <label for="tb-first">Number 3: </label>
+    <input type="text" id="tb-third" />
+	<span>Descending sort of 3 numbers</span>
+    <br />
+
+    <a href="#" onclick="submitBtnClick()">Sort</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var firstNumber = jsConsole.readFloat("#tb-first");
+            var secondNumber = jsConsole.readFloat("#tb-second");
+            var thirdNumber = jsConsole.readFloat("#tb-third");
+            var temp;
+            
+            if (thirdNumber > firstNumber) {
+                temp = firstNumber;
+                firstNumber = thirdNumber;
+                thirdNumber = temp;
+            }
+            if (secondNumber > firstNumber) {
+                temp = firstNumber;
+                firstNumber = secondNumber;
+                secondNumber = temp;
+            }
+            if (thirdNumber > secondNumber) {
+                temp = secondNumber;
+                secondNumber = thirdNumber;
+                thirdNumber = temp;
+            }
+
+            jsConsole.writeLine(firstNumber + " > " + secondNumber + " > " + thirdNumber);
+        }
+    </script>
+</body>
+</html>

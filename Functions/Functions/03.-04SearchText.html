@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Search text/document</title>
+    <link rel="stylesheet" href="styles/js-console.css" />
+</head>
+<body>
+    <h1>Exercise 3-4</h1>
+    <div>
+        <label for="tb-add">Add text: </label>
+        <input type="text" id="tb-text" />
+
+        <label for="tb-add">Search word: </label>
+        <input type="text" id="tb-word" />
+
+        <a href="#" onclick="searchWord(true)">Search</a><span> case sensitive</span>
+        <a href="#" onclick="searchWord(false)">Search</a><span> case insensitive</span>
+        <br />
+    </div>
+    <div>
+        <a href="#" onclick="scanForElement('div')">Count divs</a>
+    </div>
+    <div id="console"></div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+
+        //Can have parameters for the text and the word; Fakes overloading with true/false parameter
+        function searchWord(caseSensitive) {
+			var text = jsConsole.read("#tb-text");
+            var searchWord = jsConsole.read("#tb-word");
+		
+            if (caseSensitive === false) {
+                text = text.toLowerCase();
+				searchWord = searchWord.toLowerCase();
+            }
+			
+            var words = getWords(text);
+            var count = 0;
+			
+			for (var i in words) {
+				var word = words[i]
+				if ( word === searchWord){
+					count++;
+				}
+			}
+            
+            jsConsole.writeLine("The word " + searchWord + " was found " + count + " times.");
+        }
+		
+		function getWords(text) {
+			var words = text.split(/[\s\.,-?!)(]/);
+			for (var i = 0; i < words.length; i++) {
+				if (words[i] == "") {
+					words.splice(i, 1);
+				}
+			}
+			return words;
+		}
+
+        function scanForElement(elementType) {
+            var count = document.getElementsByTagName(elementType).length;
+
+            jsConsole.writeLine("Dives in this html page are: " + count);
+        }
+    </script>
+</body>
+</html>

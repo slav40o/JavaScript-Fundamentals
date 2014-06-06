@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Digit name</title>
+    <link href="styles/js-console.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Exercise 5: Name of digit</h1>
+
+    <label for="tb-first">Digit (0-9): </label>
+    <input type="text" id="tb-first" />
+    <br />
+
+    <a href="#" onclick="submitBtnClick()">Check</a>
+    <div id="console">
+    </div>
+    <script src="scripts/js-console.js"></script>
+    <script>
+        function submitBtnClick() {
+            var digit = jsConsole.readInteger("#tb-first");
+            var digitName;
+            switch (digit) {
+                case 0: digitName = "zero"; break;
+                case 1: digitName = "one"; break;
+                case 2: digitName = "two"; break;
+                case 3: digitName = "three"; break;
+                case 4: digitName = "four"; break;
+                case 5: digitName = "five"; break;
+                case 6: digitName = "sox"; break;
+                case 7: digitName = "seven"; break;
+                case 8: digitName = "eight"; break;
+                case 9: digitName = "nine"; break;
+                default: digitName = "Not a digit!"; 
+            }
+            jsConsole.writeLine(digit + " -> " + digitName);
+        }
+    </script>
+</body>
+</html>
